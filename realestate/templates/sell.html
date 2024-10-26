@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Fill all the required details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("{{ url_for('static', filename='R.jpg') }}");
+  background-size: cover;
+  background-position: center;
+  opacity: 80%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+    .container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .container h1 {
+      color:#ffffff;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .thumbnails{
+      padding:10px;
+      font-size:30;
+      color:#ffffff;
+      opacity:100%;
+    }
+
+    .add,
+    .city,
+    .pincode,
+    .phone,
+    .details,
+    .photos,
+    .thumbnails,
+    .subbu {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="file"] {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    #submit {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submit:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Fill all the required details</h1>
+    <form action="/submit" method="post" enctype="multipart/form-data"> <!-- Add enctype="multipart/form-data" -->
+      <div class="add">
+        <input type="text" id="address" name="address" placeholder="Enter the address.." required>
+      </div>
+      <div class="city">
+        <input type="text" id="stateAndCity" name="stateAndCity" placeholder="Enter the state and city.." required>
+      </div>
+      <div class="pincode">
+        <input type="number" id="Pincode" name="Pincode" placeholder="Pincode.." required>
+      </div>
+      <div class="phone">
+        <input type="text" id="phone" name="phone" placeholder="Enter the phone number.." required>
+      </div>
+      <div class="details">
+        <input type="text" id="details" name="details" placeholder="Price.." required>
+      </div>
+      <div class="photos">
+        <input type="file" id="photos" name="photos" accept="image/*" multiple required>
+      </div>
+      <div class="thumbnails">
+        <label type="text">Add photo for thumbnail</label>
+        <p></p>
+
+        <input type="file" id="thumbnails" name="thumbnails" accept="image/*" multiple required>
+      </div>
+      <div class="subbu">
+        <button type="submit" id="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

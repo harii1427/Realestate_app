@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            background-image: url("{{ url_for('static', filename='R.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            opacity: 80%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .photos {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .photos img {
+            max-width: 200px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .photos img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Property Details</h1>
+        <p><strong>Address:</strong> <span id="address"></span></p>
+        <p><strong>State and City:</strong> <span id="stateAndCity"></span></p>
+        <p><strong>Pincode:</strong> <span id="pincode"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+
+
+        <div class="photos" id="photosContainer"></div>
+    </div>
+
+    <script>
+        // Retrieve property details from localStorage
+        var address = localStorage.getItem('address');
+        var stateAndCity = localStorage.getItem('stateAndCity');
+        var pincode = localStorage.getItem('pincode');
+        var phone = localStorage.getItem('phone');
+        var price = localStorage.getItem('details');
+        var photos = JSON.parse(localStorage.getItem('photos'));
+
+        // Display property details
+        document.getElementById('address').innerText = address;
+        document.getElementById('stateAndCity').innerText = stateAndCity;
+        document.getElementById('pincode').innerText = pincode;
+        document.getElementById('phone').innerText = phone;
+        document.getElementById('price').innerText = details;
+
+        // Display property photos
+        var photosContainer = document.getElementById('photosContainer');
+        photos.forEach(function(photo) {
+            var img = document.createElement('img');
+            img.src = photo;
+            img.alt = 'Property Photo';
+            photosContainer.appendChild(img);
+        });
+
+        // Handle sliding to next photo
+        var currentIndex = 0;
+        var images = photosContainer.getElementsByTagName('img');
+
+        photosContainer.addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % images.length;
+            for (var i = 0; i < images.length; i++) {
+                images[i].style.display = 'none';
+            }
+            images[currentIndex].style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>
